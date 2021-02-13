@@ -5,11 +5,12 @@
 
 int     main(void)
 {
-	char	str[] = "lorem ipsum dolor sit amet";
-	char	*sub2;
+	char	s1[] = "lorem ipsum dolor sit amet";
+	char	s2[] = "dolor";
+//	char	*strjoin1;
 
-	sub2 = ft_substr(str, 400, 20);
-	printf("my_ft >> %s \n", sub2);
+//	strjoin1 = ft_strjoin(s1, s2);
+	printf("my_ft >> %s \n", ft_strtrim(s1, s2));
 	printf("================\n");
 
 	return (0);

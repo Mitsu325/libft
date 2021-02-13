@@ -6,7 +6,7 @@
 /*   By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 09:56:10 by pmitsuko          #+#    #+#             */
-/*   Updated: 2021/02/12 19:21:51 by pmitsuko         ###   ########.fr       */
+/*   Updated: 2021/02/12 20:47:25 by pmitsuko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	s_len = ft_strlen(s);
 	if (s == NULL || s_len < start)
-	{
 		return ("");
-	}
 	if (start + len < s_len)
 		substr = (char *)malloc((len + 1) * sizeof(char));
 	else

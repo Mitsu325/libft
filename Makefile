@@ -6,7 +6,7 @@
 #    By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 08:56:23 by pmitsuko          #+#    #+#              #
-#    Updated: 2021/02/12 13:14:07 by pmitsuko         ###   ########.fr        #
+#    Updated: 2021/02/13 10:05:48 by pmitsuko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ FILES	=	ft_memset.c		\
 			ft_calloc.c		\
 			ft_strdup.c		\
 			ft_substr.c		\
+			ft_strjoin.c	\
+			ft_strtrim.c	\
 
 OBJ		=	$(FILES:.c=.o)
 RM		=	rm -f
