@@ -6,7 +6,7 @@
 /*   By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 19:28:37 by pmitsuko          #+#    #+#             */
-/*   Updated: 2021/02/14 21:03:51 by pmitsuko         ###   ########.fr       */
+/*   Updated: 2021/02/16 11:50:55 by pmitsuko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char			*ft_itoa(int n)
 		num *= -1;
 		digits++;
 	}
-	if (!(str_num = malloc(sizeof(char *) * (digits + 1))))
+	if (!(str_num = (char *)malloc(sizeof(char) * (digits + 1))))
 		return (NULL);
-	*(str_num + digits) = '\0';
+	*(str_num + digits) = 0;
 	while (digits--)
 	{
 		*(str_num + digits) = num % 10 + '0';

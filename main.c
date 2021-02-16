@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "libft.h"
 
 int     main(void)
@@ -10,7 +11,7 @@ int     main(void)
 //	char	**words;
 //	int		i = 0;
 
-//	printf("================\n");
+	printf("================\n");
 //	words = ft_split(s1, ' ');
 /*	while (*(words + i) != NULL)
 	{
@@ -18,8 +19,9 @@ int     main(void)
 		printf("\n");
 		i++;
 	}*/
-//	printf("my_ft >> %s \n", ft_itoa(-5859));
-	ft_putnbr_fd(12378, 1);
+	printf("lib_ft >> %d \n", atoi("9223372036854775810"));
+	printf("my_ft >> %d \n", ft_atoi("9223372036854775812"));
+//	ft_putnbr_fd(12378, 1);
 	printf("================\n");
 
 	return (0);

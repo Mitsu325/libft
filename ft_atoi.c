@@ -6,21 +6,20 @@
 /*   By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 20:12:46 by pmitsuko          #+#    #+#             */
-/*   Updated: 2021/02/10 20:45:31 by pmitsuko         ###   ########.fr       */
+/*   Updated: 2021/02/16 09:06:57 by pmitsuko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	int num;
-	int sign;
-	int i;
+	int	num;
+	int	sign;
+	int	i;
 
 	num = 0;
 	sign = 1;
 	i = 0;
-	while (*(str + i) == ' ' || *(str + i) == '\n' || *(str + i) == '\t'
-			|| *(str + i) == '\r' || *(str + i) == '\v' || *(str + i) == '\f')
+	while (*(str + i) == 32 || (*(str + i) >= 9 && *(str + i) <= 13))
 		i++;
 	if (*(str + i) == '-')
 		sign = -1;
