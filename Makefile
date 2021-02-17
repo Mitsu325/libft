@@ -6,7 +6,7 @@
 #    By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 08:56:23 by pmitsuko          #+#    #+#              #
-#    Updated: 2021/02/14 23:36:03 by pmitsuko         ###   ########.fr        #
+#    Updated: 2021/02/17 10:58:23 by pmitsuko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,11 @@ FILES	=	ft_memset.c		\
 			ft_putendl_fd.c	\
 			ft_putnbr_fd.c	\
 
-OBJ		=	$(FILES:.c=.o)
-RM		=	rm -f
+BONUS_FILES	=	ft_lstnew.c
+
+OBJ			=	$(FILES:.c=.o)
+BONUS_OBJ	=	$(BONUS_FILES:.c=.o)
+RM			=	rm -f
 
 all:		$(NAME)
 
@@ -63,6 +66,14 @@ $(NAME):	$(OBJ)
 $(OBJ):		$(FILES)
 	@gcc -c $(FLAG) $(FILES)
 
+bonus:		$(BONUS_FILES)	
+	@gcc -c $(FLAG) $(BONUS_FILES)
+	@echo "compile bonus files"
+	@ar rcs $(NAME) $(BONUS_OBJ)
+	@echo "$(NAME) created"
+	@ranlib $(NAME)
+	@echo "$(NAME) indexed"
+
 clean:
 	@$(RM) $(OBJ)	
 	@echo "OBJ deleted"
@@ -73,10 +84,15 @@ fclean:		clean
 
 re:			fclean all
 
-normi:		$(FILES)
+normi:		$(FILES) $(BONUS_FILES)
 	norminette $(FILES)
 
 test:		 main.c $(NAME)
 	@gcc $(FLAG) main.c $(NAME) && ./a.out
+
+git:
+	git add .
+	git commit -m "$m"
+	git push origin master
 
 .PHONY: all, clean, fclean, re
