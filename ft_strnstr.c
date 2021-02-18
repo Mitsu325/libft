@@ -6,7 +6,7 @@
 /*   By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 21:34:48 by pmitsuko          #+#    #+#             */
-/*   Updated: 2021/02/11 20:51:30 by pmitsuko         ###   ########.fr       */
+/*   Updated: 2021/02/17 22:58:48 by pmitsuko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,17 @@
 char	*ft_strnstr(const char *str, const char *find, size_t len)
 {
 	size_t	i;
-	size_t	aux;
-	int		flag;
+	size_t	j;
 
 	if (!ft_strlen(find))
 		return ((char *)str);
 	i = -1;
 	while (++i < len && *(str + i))
 	{
-		if (*(str + i) == *(find))
-		{
-			aux = i;
-			flag = 1;
-			while (aux < len && *(find))
-				if (*(str + aux++) != *(find++))
-					flag = 0;
-			if (flag && !*(find))
-				return ((char *)str + i);
-		}
+		j = -1;
+		while ((i + ++j) < len && *(str + i + j) == *(find + j))
+			if (!*(find + j + 1))
+				return ((char *)(str + i));
 	}
 	return (NULL);
 }
