@@ -6,7 +6,7 @@
 #    By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 08:56:23 by pmitsuko          #+#    #+#              #
-#    Updated: 2021/02/18 19:50:22 by pmitsuko         ###   ########.fr        #
+#    Updated: 2021/02/18 20:13:49 by pmitsuko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ FILES	=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 
-BONUS_FILES	=	ft_lstnew.c ft_lstadd_front.c
+BONUS_FILES	=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c
 
 OBJ			=	$(FILES:.c=.o)
 BONUS_OBJ	=	$(BONUS_FILES:.c=.o)

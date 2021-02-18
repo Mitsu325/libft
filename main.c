@@ -3,57 +3,83 @@
 #include <stdio.h>
 #include "libft.h"
 
-void	ft_print_result(t_list *elem)
+void	ft_print_result(char const *s)
 {
 	int		len;
 
 	len = 0;
-	while (((char *)elem->content)[len])
-			len++;
-	write(1, elem->content, len);
-	write(1, "\n", 1);
+	while (s[len])
+		len++;
+	write(1, s, len);
 }
 
-t_list	*ft_lstnewone(void *content)
+void	ft_print_result2(int n)
 {
-	t_list	*elem;
+	char c;
 
-	elem = (t_list *)malloc(sizeof(t_list));
-	if (!elem)
-			return (NULL);
-	if (!content)
-			elem->content = NULL;
-	else
-			elem->content = content;
-	elem->next = NULL;
-	return (elem);
+	if (n >= 10)
+		ft_print_result2(n / 10);
+	c = n % 10 + '0';
+	write (1, &c, 1);
 }
 
 int	main(void)
 {
-	t_list		*begin;
-	t_list		*elem;
-	t_list		*elem2;
-	t_list		*elem3;
-	t_list		*elem4;
-	char		*str = strdup("lorem");
-	char		*str2 = strdup("ipsum");
-	char		*str3 = strdup("dolor");
-	char		*str4 = strdup("sit");
+	t_list	*elem;
 
-	elem = ft_lstnewone(str);
-	elem2 = ft_lstnewone(str2);
-	elem3 = ft_lstnewone(str3);
-	elem4 = ft_lstnewone(str4);
-	begin = NULL;
-	ft_lstadd_front(&begin, elem4);
-	ft_lstadd_front(&begin, elem3);
-	ft_lstadd_front(&begin, elem2);
-	ft_lstadd_front(&begin, elem);
-	while (begin)
+	char	str [] = "lorem ipsum dolor sit";
+	int		i;
+
+	if (!(elem = ft_lstnew(str)))
+		ft_print_result("NULL");
+	else
 	{
-		ft_print_result(begin);
-		begin = begin->next;
+		if (!(elem->content))
+			ft_print_result("NULL");
+		else
+			ft_print_result(elem->content);
+		if (!(elem->next))
+		{
+			write(1, "\n", 1);
+			ft_print_result("NULL");
+		}
 	}
+
+	write(1, "-", 1);
+
+	i = 42;
+
+	if (!(elem = ft_lstnew(&i)))
+		ft_print_result("NULL");
+	else
+	{
+		if (!(elem->content))
+			ft_print_result("NULL");
+		else
+			ft_print_result2(*(int *)(elem->content));
+		if (!(elem->next))
+		{
+			write(1, "\n", 1);
+			ft_print_result("NULL");
+		}
+	}
+
+	write(1, "-", 1);
+
+	if (!(elem = ft_lstnew(NULL)))
+		ft_print_result("NULL");
+	else
+	{
+		if (!(elem->content))
+			ft_print_result("NULL");
+		else
+			ft_print_result(elem->content);
+		if (!(elem->next))
+		{
+			write(1, "\n", 1);
+			ft_print_result("NULL");
+		}
+	}
+
 	return (0);
 }
