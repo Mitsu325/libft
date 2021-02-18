@@ -6,7 +6,7 @@
 #    By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 08:56:23 by pmitsuko          #+#    #+#              #
-#    Updated: 2021/02/18 14:32:29 by pmitsuko         ###   ########.fr        #
+#    Updated: 2021/02/18 14:41:57 by pmitsuko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,10 +72,6 @@ bonus:
 	@echo "$(NAME) created"
 	@ranlib $(NAME)
 	@echo "$(NAME) indexed"
-
-$(BONUS_OBJ):		$(BONUS_FILES)
-	@gcc -c $(FLAG) $(BONUS_FILES)
-	@echo "compile bonus files"
 
 clean:
 	@$(RM) $(OBJ) $(BONUS_OBJ)
