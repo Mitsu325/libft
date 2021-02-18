@@ -6,7 +6,7 @@
 #    By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 08:56:23 by pmitsuko          #+#    #+#              #
-#    Updated: 2021/02/17 10:58:23 by pmitsuko         ###   ########.fr        #
+#    Updated: 2021/02/18 09:59:41 by pmitsuko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,16 +66,17 @@ $(NAME):	$(OBJ)
 $(OBJ):		$(FILES)
 	@gcc -c $(FLAG) $(FILES)
 
-bonus:		$(BONUS_FILES)	
-	@gcc -c $(FLAG) $(BONUS_FILES)
-	@echo "compile bonus files"
+bonus:		$(BONUS_OBJ)	
 	@ar rcs $(NAME) $(BONUS_OBJ)
 	@echo "$(NAME) created"
 	@ranlib $(NAME)
 	@echo "$(NAME) indexed"
 
+$(BONUS_OBJ):		$(BONUS_FILES)
+	@gcc -c $(FLAG) $(BONUS_FILES)
+
 clean:
-	@$(RM) $(OBJ)	
+	@$(RM) $(OBJ) $(BONUS_OBJ)
 	@echo "OBJ deleted"
 
 fclean:		clean
@@ -93,6 +94,6 @@ test:		 main.c $(NAME)
 git:
 	git add .
 	git commit -m "$m"
-	git push origin master
+	git push origin main
 
 .PHONY: all, clean, fclean, re
