@@ -3,83 +3,60 @@
 #include <stdio.h>
 #include "libft.h"
 
-void	ft_print_result(char const *s)
+t_list	*ft_lstnewone(void *content)
 {
-	int		len;
+	t_list	*elem;
 
-	len = 0;
-	while (s[len])
-		len++;
-	write(1, s, len);
-}
-
-void	ft_print_result2(int n)
-{
-	char c;
-
-	if (n >= 10)
-		ft_print_result2(n / 10);
-	c = n % 10 + '0';
-	write (1, &c, 1);
+	elem = (t_list *)malloc(sizeof(t_list));
+	if (!elem)
+		return (NULL);
+	if (!content)
+		elem->content = NULL;
+	else
+		elem->content = content;
+	elem->next = NULL;
+	return (elem);
 }
 
 int	main(void)
 {
-	t_list	*elem;
+	int			i;
+	char		*content;
+	t_list		*val;
+	t_list		*elem;
+	t_list		*elem2;
+	t_list		*elem3;
+	t_list		*elem4;
+	char		*str = strdup("lorem");
+	char		*str2 = strdup("ipsum");
+	char		*str3 = strdup("dolor");
+	char		*str4 = strdup("sit");
+	elem = ft_lstnewone(str);
+	elem2 = ft_lstnewone(str2);
+	elem3 = ft_lstnewone(str3);
+	elem4 = ft_lstnewone(str4);
 
-	char	str [] = "lorem ipsum dolor sit";
-	int		i;
-
-	if (!(elem = ft_lstnew(str)))
-		ft_print_result("NULL");
-	else
-	{
-		if (!(elem->content))
-			ft_print_result("NULL");
-		else
-			ft_print_result(elem->content);
-		if (!(elem->next))
-		{
-			write(1, "\n", 1);
-			ft_print_result("NULL");
-		}
-	}
-
-	write(1, "-", 1);
-
-	i = 42;
-
-	if (!(elem = ft_lstnew(&i)))
-		ft_print_result("NULL");
-	else
-	{
-		if (!(elem->content))
-			ft_print_result("NULL");
-		else
-			ft_print_result2(*(int *)(elem->content));
-		if (!(elem->next))
-		{
-			write(1, "\n", 1);
-			ft_print_result("NULL");
-		}
-	}
-
-	write(1, "-", 1);
-
-	if (!(elem = ft_lstnew(NULL)))
-		ft_print_result("NULL");
-	else
-	{
-		if (!(elem->content))
-			ft_print_result("NULL");
-		else
-			ft_print_result(elem->content);
-		if (!(elem->next))
-		{
-			write(1, "\n", 1);
-			ft_print_result("NULL");
-		}
-	}
+	elem->next = elem2;
+	elem2->next = elem3;
+	elem3->next = elem4;
+	val = ft_lstlast(elem);
+	i = 0;
+	content = val->content;
+	while (content[i])
+		write(1, &(content[i++]), 1);
+	write(1, "\n", 1);
+	elem->next = NULL;
+	val = ft_lstlast(elem);
+	content = val->content;
+	i = 0;
+	while (content[i])
+		write(1, &(content[i++]), 1);
+	write(1, "\n", 1);
+	elem = NULL;
+	val = ft_lstlast(elem);
+	if (val == NULL)
+		write(1, "NULL", 4);
+	write(1, "\n", 1);
 
 	return (0);
 }
