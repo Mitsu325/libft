@@ -3,15 +3,30 @@
 #include <stdio.h>
 #include "libft.h"
 
+void	ft_modify_list_with_d(void *elem)
+{
+	int		len;
+	char		*content;
+
+	len = 0;
+	content = (char *)elem;
+	while (content[len])
+		content[len++] = 'd';
+}
+
 void	ft_print_result(t_list *elem)
 {
 	int		len;
 
-	len = 0;
-	while (((char *)elem->content)[len])
-		len++;
-	write(1, ((char *)elem->content), len);
-	write(1, "\n", 1);
+	while (elem)
+	{
+		len = 0;
+		while (((char *)elem->content)[len])
+			len++;
+		write(1, elem->content, len);
+		write(1, "\n", 1);
+		elem = elem->next;
+	}
 }
 
 t_list	*ft_lstnewone(void *content)
@@ -29,33 +44,12 @@ t_list	*ft_lstnewone(void *content)
 	return (elem);
 }
 
-void	*ft_map(void *ct)
-{
-	int i;
-	void	*c;
-	char	*pouet;
-
-	c = ct;
-	i = -1;
-	pouet = (char *)c;
-	while (pouet[++i])
-		if (pouet[i] == 'o')
-			pouet[i] = 'a';
-	return (c);
-}
-
-void    ft_del(void *content)
-{
-	free(content);
-}
-
 int	main(void)
 {
 	t_list		*elem;
 	t_list		*elem2;
 	t_list		*elem3;
 	t_list		*elem4;
-	t_list		*list;
 	char		*str = strdup("lorem");
 	char		*str2 = strdup("ipsum");
 	char		*str3 = strdup("dolor");
@@ -69,18 +63,8 @@ int	main(void)
 	elem2->next = elem3;
 	elem3->next = elem4;
 
-	if (!(list = ft_lstmap(elem, &ft_map, &ft_del)))
-		return (0);
-	if (list == elem)
-		write(1, "A new list is not returned\n", 27);
-	int i;
-	i = 0;
-	ft_print_result(list);
-	while (list->next)
-	{
-		list = list->next;
-		ft_print_result(list);
-		i++;
-	}
+	ft_lstiter(elem, &ft_modify_list_with_d);
+	ft_print_result(elem);
+
 	return (0);
 }
