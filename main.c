@@ -3,30 +3,43 @@
 #include <stdio.h>
 #include "libft.h"
 
-void	ft_print_result(t_list *elem)
+void	ft_modify_list_with_d(void *elem)
 {
-	write(1, elem->content, strlen(elem->content));
+	int		len;
+	char		*content;
+
+	len = 0;
+	content = (char *)elem;
+	while (content[len])
+		content[len++] = 'd';
 }
 
-static int	nb_free_done;
-
-void	ft_del(void *content)
+void	ft_print_result(t_list *elem)
 {
-	free(content);
-	nb_free_done++;
+	int		len;
+
+	while (elem)
+	{
+		len = 0;
+		while (((char *)elem->content)[len])
+			len++;
+		write(1, elem->content, len);
+		write(1, "\n", 1);
+		elem = elem->next;
+	}
 }
 
 t_list	*ft_lstnewone(void *content)
 {
 	t_list	*elem;
-
 	elem = (t_list *)malloc(sizeof(t_list));
+
 	if (!elem)
-			return (NULL);
+		return (NULL);
 	if (!content)
-			elem->content = NULL;
+		elem->content = NULL;
 	else
-			elem->content = content;
+		elem->content = content;
 	elem->next = NULL;
 	return (elem);
 }
@@ -49,31 +62,9 @@ int	main(void)
 	elem->next = elem2;
 	elem2->next = elem3;
 	elem3->next = elem4;
-	nb_free_done = 0;
 
-	ft_lstclear(&elem3, &ft_del);
-	if (elem)
-		ft_print_result(elem);
-	else
-		write(1, "NULL", 4);
-	write(1, "\n", 1);
-	if (elem2)
-		ft_print_result(elem2);
-	else
-		write(1, "NULL", 4);
-	write(1, "\n", 1);
-	if (elem3)
-		ft_print_result(elem3);
-	else
-		write(1, "NULL", 4);
-	write(1, "\n", 1);
-	if (elem4)
-	{
-		write(1, "nb_free_done = ", 15);
-		nb_free_done += '0';
-		write(1, &nb_free_done, 1);
-	}
-	else
-		write(1, "NULL", 4);
+	ft_lstiter(elem, &ft_modify_list_with_d);
+	ft_print_result(elem);
+
 	return (0);
 }
