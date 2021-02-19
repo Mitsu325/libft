@@ -6,7 +6,7 @@
 /*   By: pmitsuko <pmitsuko@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:04:59 by pmitsuko          #+#    #+#             */
-/*   Updated: 2021/02/18 21:43:49 by pmitsuko         ###   ########.fr       */
+/*   Updated: 2021/02/18 22:31:28 by pmitsuko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
 
 #endif
